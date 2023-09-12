@@ -1,4 +1,4 @@
-const CustomFilter = ({ title }) => {
+const CustomFilter = () => {
 	return <div>CustomFilter</div>;
 };
 export default CustomFilter;
