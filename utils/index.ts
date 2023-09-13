@@ -9,7 +9,7 @@ export async function fetchCars(filters: FilterProps) {
 	};
 
 	const response = await fetch(
-		`https://cars-by-api-ninjas.p.rapidapi.com/v1/cars?make=${manufacturer}year=${year}&model=${model}&limit=${limit}&fuel_type=${fuel}`,
+		`https://cars-by-api-ninjas.p.rapidapi.com/v1/cars?${manufacturer}year=${year}&model=${model}&limit=${limit}&fuel_type=${fuel}`,
 		{
 			headers: headers,
 		}
@@ -46,4 +46,15 @@ export const generateCarImageUrl = (car: CarProps, angle?: string) => {
 	url.searchParams.append("angle", `${angle}`);
 
 	return `${url}`;
+};
+
+export const updateSearchParams = (type: string, value: string) => {
+	// get current URL search params
+	const searchParams = new URLSearchParams(window.location.search);
+
+	// set the specified search parameter to the given value
+	searchParams.set(type, value);
+
+	const newPathname = `${window.location.search}?${searchParams.toString()}`;
+	return newPathname;
 };
